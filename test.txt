@@ -1,0 +1,33 @@
+loop:
+    self.shield()
+    farthest = None
+    maxDistance = 0
+    enemyIndex = 0
+    enemies = self.findEnemies()
+    self.shield()
+    # 查看全部敌人，找出最远的那个。
+    while enemyIndex < len(enemies):
+        target = enemies[enemyIndex]
+        enemyIndex += 1
+        distance = self.distanceTo(target)
+        if distance > maxDistance:
+            farthest = target
+            maxDistance = distance
+        if farthest:
+            while farthest.health >0:
+                #self.jumpTo(farthest)
+                if self.isReady("cleave"):
+                    self.cleave(farthest)
+                elif self.isReady("bash"):
+                    self.bash(farthest)
+                else:
+                    self.attack(farthest)
+                    self.attack(farthest)
+
+                    
+
+        # 是不是有敌人比我们能看到的最远的敌人还要远？
+        #distance = self.distanceTo(target)
+       # if distance > maxDistance:
+         #   maxDistance = distance
+        #    farthest = target
